@@ -157,7 +157,7 @@ class Autopass extends ReadyResource {
     })
 
     this.base.on('update', () => {
-      this.emit('update')
+      if (!this.base._interrupting) this.emit('update')
     })
   }
 

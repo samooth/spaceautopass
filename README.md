@@ -6,6 +6,9 @@ Distributed notes/password manager
 npm install autopass
 ```
 
+> [!NOTE]
+> Autopass needs Corestore 7, our latest major version that is backed by RocksDB for storage and atomicity.
+
 ## Usage
 
 First choose if you wanna pair or make a new instance.

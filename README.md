@@ -12,7 +12,7 @@ First choose if you wanna pair or make a new instance.
 
 ``` js
 import Autopass from 'spaceautopass'
-import Corestore from 'corestore'
+import Corestore from 'spacecorestore'
 
 const pass = new Autopass(new Corestore('./pass'))
 

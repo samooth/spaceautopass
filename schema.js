@@ -1,9 +1,9 @@
-const Hyperschema = require('hyperschema')
-const HyperdbBuilder = require('hyperdb/builder')
-const Hyperdispatch = require('hyperdispatch')
+const Spaceschema = require('spaceschema')
+const SpacedbBuilder = require('p2p-spacedb/builder')
+const Spacedispatch = require('spacedispatch')
 
 // SCHEMA CREATION START //
-const autopass = Hyperschema.from('./spec/schema')
+const autopass = Spaceschema.from('./spec/schema')
 const template = autopass.namespace('autopass')
 // You can find a list of supported data types here: https://github.com/holepunchto/compact-encoding
 template.register({
@@ -65,9 +65,9 @@ template.register({
   }
   ]
 })
-Hyperschema.toDisk(autopass)
+Spaceschema.toDisk(autopass)
 
-const dbTemplate = HyperdbBuilder.from('./spec/schema', './spec/db')
+const dbTemplate = SpacedbBuilder.from('./spec/schema', './spec/db')
 const blobs = dbTemplate.namespace('autopass')
 blobs.collections.register({
   name: 'records',
@@ -91,10 +91,10 @@ blobs.collections.register({
   key: ['key']
 })
 
-HyperdbBuilder.toDisk(dbTemplate)
+SpacedbBuilder.toDisk(dbTemplate)
 
-const hyperdispatch = Hyperdispatch.from('./spec/schema', './spec/hyperdispatch')
-const namespace = hyperdispatch.namespace('autopass')
+const spacedispatch = Spacedispatch.from('./spec/schema', './spec/spacedispatch')
+const namespace = spacedispatch.namespace('autopass')
 namespace.register({
   name: 'remove-writer',
   requestType: '@autopass/writer'
@@ -115,4 +115,4 @@ namespace.register(({
   name: 'add-invite',
   requestType: '@autopass/invite'
 }))
-Hyperdispatch.toDisk(hyperdispatch)
+Spacedispatch.toDisk(spacedispatch)

@@ -1,7 +1,7 @@
 const test = require('brittle')
 const Autopass = require('./')
-const Corestore = require('corestore')
-const testnet = require('hyperdht/testnet')
+const Corestore = require('spacecorestore')
+const testnet = require('spacedht/testnet')
 const tmp = require('test-tmp')
 
 test('basic', async function (t) {

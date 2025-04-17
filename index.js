@@ -1,13 +1,13 @@
 // the js module powering the mobile and desktop app
 
-const Autobase = require('autobase')
+const Autobase = require('spaceautobase')
 const BlindPairing = require('blind-pairing')
-const HyperDB = require('hyperdb')
-const Hyperswarm = require('hyperswarm')
+const SpaceDB = require('p2p-spacedb')
+const Spaceswarm = require('spaceswarm')
 const ReadyResource = require('ready-resource')
 const z32 = require('z32')
 const b4a = require('b4a')
-const { Router, dispatch } = require('./spec/hyperdispatch')
+const { Router, dispatch } = require('./spec/spacedispatch')
 const db = require('./spec/db/index.js')
 
 class AutopassPairer extends ReadyResource {
@@ -28,8 +28,8 @@ class AutopassPairer extends ReadyResource {
 
   async _open () {
     await this.store.ready()
-    this.swarm = new Hyperswarm({
-      keyPair: await this.store.createKeyPair('hyperswarm'),
+    this.swarm = new Spaceswarm({
+      keyPair: await this.store.createKeyPair('spaceswarm'),
       bootstrap: this.bootstrap
     })
 
@@ -147,7 +147,7 @@ class Autopass extends ReadyResource {
       encrypt: true,
       encryptionKey,
       open (store) {
-        return HyperDB.bee(store.get('view'), db, {
+        return SpaceDB.bee(store.get('view'), db, {
           extension: false,
           autoUpdate: true
         })
@@ -243,8 +243,8 @@ class Autopass extends ReadyResource {
   async _replicate () {
     await this.base.ready()
     if (this.swarm === null) {
-      this.swarm = new Hyperswarm({
-        keyPair: await this.store.createKeyPair('hyperswarm'),
+      this.swarm = new Spaceswarm({
+        keyPair: await this.store.createKeyPair('spaceswarm'),
         bootstrap: this.bootstrap
       })
       this.swarm.on('connection', (connection, peerInfo) => {

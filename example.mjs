@@ -1,5 +1,5 @@
 import Autopass from './index.js'
-import Corestore from 'corestore'
+import Corestore from 'spacecorestore'
 
 const store = new Corestore('example/' + process.argv[2])
 

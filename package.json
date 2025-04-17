@@ -1,6 +1,6 @@
 {
   "name": "spaceautopass",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "scripts": {
     "test": "standard && brittle test.js"
@@ -21,7 +21,6 @@
     "blind-pairing": "^2.3.1",
     "compact-encoding": "^2.16.0",
     "spacebee": "latest",
-    "spacecorestore": "latest",
     "p2p-spacedb": "latest",
     "spacedispatch": "latest",
     "spaceschema": "latest",
